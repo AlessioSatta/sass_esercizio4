@@ -1,0 +1,39 @@
+@use 'px2rem';
+
+@mixin article-style($bdc, $fs, $color) {
+    border-color: $bdc;
+    font-size: $fs;
+    color: $color;
+}
+
+div {
+    border: px2rem.px2rem(1) solid red;
+    display: flex;
+    flex-direction: column;
+    h1 {
+        color: green;
+        border-bottom: px2rem.px2rem(1) solid blue;
+        align-self: center;
+        width: fit-content;
+    }
+    section {
+        display: flex;
+        margin: 0 1rem 1rem 1rem;
+        article {
+            border: px2rem.px2rem(1) solid;
+            width: 100%;
+            text-align: center;
+        }
+        article:nth-child(odd) {
+            @include article-style($bdc: green, $fs:1rem, $color: blue);
+        }
+        article:nth-child(even) {
+            @include article-style($bdc: green, $fs:1rem, $color: red);
+        }
+    }
+    section:last-child {
+        article {
+            @include article-style($bdc: blue, $fs:px2rem.px2rem(24), $color: green);
+        }
+    }
+}
